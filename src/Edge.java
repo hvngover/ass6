@@ -1,7 +1,7 @@
 public class Edge<V> {
-    private V source;
-    private V destination;
-    private Double weight;
+    private V source; // The source vertex of the edge
+    private V destination; // The destination vertex of the edge
+    private Double weight; // The weight of the edge
 
     public Edge(V source, V destination, Double weight) {
         this.source = source;
@@ -17,11 +17,11 @@ public class Edge<V> {
         this.source = source;
     }
 
-    public V getDes() {
+    public V getDestination() {
         return destination;
     }
 
-    public void setDes(V destination) {
+    public void setDestination(V destination) {
         this.destination = destination;
     }
 
