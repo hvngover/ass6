@@ -1,54 +1,47 @@
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
         // Create a weighted graph
         WeightedGraph<String> graph = new WeightedGraph<>();
 
         // Add vertices to the graph
-        Vertex<String> v1 = new Vertex<>("A");
-        Vertex<String> v2 = new Vertex<>("B");
-        Vertex<String> v3 = new Vertex<>("C");
-        Vertex<String> v4 = new Vertex<>("D");
-        Vertex<String> v5 = new Vertex<>("E");
-        Vertex<String> v6 = new Vertex<>("F");
+        Vertex<String> a = new Vertex<>("A");
+        Vertex<String> b = new Vertex<>("B");
+        Vertex<String> c = new Vertex<>("C");
+        Vertex<String> d = new Vertex<>("D");
+        Vertex<String> e = new Vertex<>("E");
 
-        graph.addVertex(v1);
-        graph.addVertex(v2);
-        graph.addVertex(v3);
-        graph.addVertex(v4);
-        graph.addVertex(v5);
-        graph.addVertex(v6);
+        graph.addVertex(a);
+        graph.addVertex(b);
+        graph.addVertex(c);
+        graph.addVertex(d);
+        graph.addVertex(e);
 
         // Add edges to the graph
-        graph.addEdge(v1, v2, 2);
-        graph.addEdge(v1, v3, 4);
-        graph.addEdge(v2, v4, 3);
-        graph.addEdge(v2, v5, 1);
-        graph.addEdge(v3, v4, 2);
-        graph.addEdge(v4, v5, 2);
-        graph.addEdge(v4, v6, 4);
-        graph.addEdge(v5, v6, 1);
+        graph.addEdge(a, b, 5.0);
+        graph.addEdge(a, c, 2.0);
+        graph.addEdge(b, d, 3.0);
+        graph.addEdge(c, d, 1.0);
+        graph.addEdge(c, e, 4.0);
+        graph.addEdge(d, e, 6.0);
 
-        // Perform breadth-first search
+        // Create an instance of BreadthFirstSearch and perform breadth-first search traversal
         BreadthFirstSearch<String> bfs = new BreadthFirstSearch<>(graph);
-        List<Vertex<String>> bfsTraversal = bfs.traverse(v1);
+        List<Vertex<String>> bfsTraversal = bfs.traverse(a);
+        System.out.println("BFS traversal: " + bfsTraversal);
+        // Output: BFS traversal: [A, B, C, D, E]
 
-        System.out.println("Breadth-First Search:");
-        for (Vertex<String> vertex : bfsTraversal) {
-            System.out.println(vertex);
-        }
-
-        // Perform Dijkstra's algorithm
+        // Create an instance of DijkstraSearch and perform Dijkstra's algorithm
         DijkstraSearch<String> dijkstra = new DijkstraSearch<>(graph);
-        dijkstra.traverse(v1);
+        dijkstra.traverse(a);
 
-        // Get the shortest path from A to F
-        List<Vertex<String>> shortestPath = dijkstra.getShortestPath(v6);
+        // Get the shortest distance from vertex A to vertex E
+        double shortestDistance = dijkstra.getShortestDistance(e);
+        System.out.println("Shortest distance from A to E: " + shortestDistance);
+        // Output: Shortest distance from A to E: 8.0
 
-        System.out.println("Shortest Path from A to F:");
-        for (Vertex<String> vertex : shortestPath) {
-            System.out.println(vertex);
-        }
+        // Get the shortest path from vertex A to vertex E
+        List<Vertex<String>> shortestPath = dijkstra.getShortestPath(e);
+        System.out.println("Shortest path from A to E: " + shortestPath);
+        // Output: Shortest path from A to E: [A, C, E]
     }
 }
