@@ -31,5 +31,5 @@ public class Vertex<V> {
     }
     // Returns a string representation of the vertex
 
-    // Additional methods or modifications can be added here
+   
 }
